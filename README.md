@@ -5,11 +5,11 @@ It allows you to build firmware (.elf, .hex, .bin, .img) without needing e²stud
 ## 1. Why this Makefile?
 The official Renesas SDK is designed for use with e²studio (Eclipse-based IDE). While e²studio works, I chose to create my own Makefile for the following reasons:
 ### My main reasons
-1. Easier integration with projects - Being independent from e2studio provides better version control for my projects.
+1. Easier integration with projects - Being independent from e²studio provides better version control for my projects.
 2. LLVM compiler issues – the LLVM flow always gave a busybox error on Windows, and I could only build successfully on Linux.
 3. Simpler path management – with Makefiles, adding or modifying include paths is straightforward. e²studio generates very complex Makefiles automatically, which are harder to fine-tune.
 ### Additional benefits of this Makefile approach
-1. It's lightweight. You can use a code editor of your choice instead of needing to download the e2Studio IDE.
+1. It's lightweight. You can use a code editor of your choice instead of needing to download the e²Studio IDE.
 2. It's portable. Works in MSYS2 (Windows) or Linux with make + arm-none-eabi-gcc.
 3. All compiler/linker flags are visible and editable
 ### Why you might still use e²studio
@@ -89,9 +89,9 @@ Then modify ```main.c``` as follows:
 
     ...
     system_init();
-    arch_asm_delay_us(10); // // Required. Otherwise, DA14531 may get stuck in a bootloop
+    arch_asm_delay_us(10); // Required. Otherwise, DA14531 may get stuck in a bootloop
     wdg_freeze();
-    while ((GetWord16(SYS_STAT_REG) & XTAL32M_SETTLED) == 0); // // Required. Otherwise, DA14531 may get stuck in a bootloop
+    while ((GetWord16(SYS_STAT_REG) & XTAL32M_SETTLED) == 0); // Required. Otherwise, DA14531 may get stuck in a bootloop
     blinky_test();
     ...
 ```
